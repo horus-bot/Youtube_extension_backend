@@ -19,7 +19,7 @@ def tamil():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a translation engine. You will receive a JSON array where each object has a 'text' field containing English. Translate ONLY the 'text' field of each object into Tamil. Return the modified JSON with translated 'text' fields. DO NOT change other keys. DO NOT summarize. DO NOT respond with anything other than the modified JSON.",
+                    "content": "You are a translation engine. You will receive a JSON array where each object has a 'text' field containing English. Translate ONLY the 'text' field of each object into spoken hindi . Return the modified JSON with translated 'text' fields. DO NOT change other keys. DO NOT summarize. DO NOT respond with anything other than the modified JSON.",
                 },
                 {
                     "role": "user",
