@@ -1,12 +1,12 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from transcription import subtit
+from serialize import serial
 
 load_dotenv()
 
-def groq_summary():
-    text = subtit()
+def tamil():
+    text = serial()
 
     client = OpenAI(
         api_key=os.getenv("GROQ_API_KEY"),
@@ -19,7 +19,7 @@ def groq_summary():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a YouTube video summarizer. Provide a concise summary in bullet points.",
+                    "content": "You are a translation engine. You will receive a JSON array where each object has a 'text' field containing English. Translate ONLY the 'text' field of each object into Tamil. Return the modified JSON with translated 'text' fields. DO NOT change other keys. DO NOT summarize. DO NOT respond with anything other than the modified JSON.",
                 },
                 {
                     "role": "user",
@@ -27,7 +27,7 @@ def groq_summary():
                 },
             ],
             temperature=0.5,
-            max_tokens=500,
+            max_tokens=3000,
         )
 
         return response.choices[0].message.content
@@ -36,8 +36,9 @@ def groq_summary():
         return f"Error occurred: {e}"
 
 if __name__ == "__main__":
-    summary = groq_summary()
-    print("\n Video Summary:\n")
-    print(summary)
+    translation = tamil()
+    print(translation)
+
+
 
    
