@@ -2,8 +2,8 @@ from url import takeUrl
 from youtube_transcript_api import YouTubeTranscriptApi
 
 
-def subtit():
-    video_id = takeUrl()
+def subtit(url):
+    video_id = takeUrl(url)
     ytt_api = YouTubeTranscriptApi()
     content = ytt_api.fetch(video_id)
     
@@ -20,4 +20,6 @@ def translation():
     return last_snippet
 
 if __name__ == "__main__":
-   print( translation())
+   a=input("please eneter the url ")
+   print(subtit(a))
+   print(type(a))

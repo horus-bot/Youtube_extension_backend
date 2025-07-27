@@ -1,12 +1,12 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from transcription import subtit
+from transcription import  subtit
 
 load_dotenv()
 
-def groq_summary():
-    text = subtit()
+def groq_summary(url):
+    text = subtit(url)
 
     client = OpenAI(
         api_key=os.getenv("GROQ_API_KEY"),
@@ -19,7 +19,7 @@ def groq_summary():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a YouTube video summarizer. Provide a concise summary in bullet points.",
+                    "content": "You are a YouTube video summarizer. Provide a extensive detailed report of the video where you will create a summary and then followup by giving details and explaining everything.Reply only in english no special character",
                 },
                 {
                     "role": "user",
@@ -36,7 +36,7 @@ def groq_summary():
         return f"Error occurred: {e}"
 
 if __name__ == "__main__":
-    summary = groq_summary()
+    summary = groq_summary(input("url"))
     print("\n Video Summary:\n")
     print(summary)
 

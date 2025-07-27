@@ -1,8 +1,8 @@
 import json 
-from transcription import translation 
+from transcription import subtit 
 
-def serial():
-    object = translation()
+def serial(url):
+    object = subtit(url)
     str_format=json.dumps(object)
     return str_format
 
