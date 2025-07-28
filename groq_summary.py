@@ -27,7 +27,7 @@ def groq_summary(url):
                 },
             ],
             temperature=0.5,
-            max_tokens=500,
+            max_tokens=3000,
         )
 
         return response.choices[0].message.content
