@@ -3,8 +3,17 @@ from fastapi.responses import JSONResponse
 from groq_summary import groq_summary
 from tamil import tamil
 from hindi import hindi 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/summarize")
 async def summarize(url:str):
