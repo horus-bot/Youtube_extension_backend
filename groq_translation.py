@@ -1,12 +1,12 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from serialize import serial
+from transcription import translation
 
 load_dotenv()
 
 def tamil():
-    text = serial()
+    text = translation()
 
     client = OpenAI(
         api_key=os.getenv("GROQ_API_KEY"),
@@ -19,14 +19,19 @@ def tamil():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a translation engine. You will receive a JSON array where each object has a 'text' field containing English. Translate ONLY the 'text' field of each object into spoken hindi . Return the modified JSON with translated 'text' fields. DO NOT change other keys. DO NOT summarize. DO NOT respond with anything other than the modified JSON.",
+                    "content": """You are a translation engine. You will receive a JSON array where each object has a "text" field containing English. 
+Translate ONLY the value of the "text" field in each object into natural spoken Hindi. 
+Do not modify or remove any other keys ("start", "duration") or their values. 
+Preserve the JSON array structure exactly. 
+Output only the modified JSON with translated "text" fields and nothing else.
+""",
                 },
                 {
                     "role": "user",
                     "content": text,
                 },
             ],
-            temperature=0.5,
+            temperature=0.2,
             max_tokens=3000,
         )
 
