@@ -18,7 +18,7 @@ async def summarize(url:str):
 async def tamil_translation(url:str):
     try:
         result=tamil(url)
-        return JSONResponse(conten={"summary": result})
+        return JSONResponse(content={"summary": result})
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500) 
     
@@ -26,6 +26,6 @@ async def tamil_translation(url:str):
 async def hindi_translation(url:str):
     try:
         result=hindi(url)
-        return JSONResponse(conten={"summary": result})
+        return JSONResponse(content={"summary": result})
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)     
