@@ -12,9 +12,9 @@ def subtit(url):
          full += (snippet.text)
     return full
 
-def translation():
-    a=input("url : ")
-    video_id = takeUrl(a)
+def translation(url):
+    
+    video_id = takeUrl(url)
     ytt_api = YouTubeTranscriptApi()
     content = ytt_api.fetch(video_id)
     last_snippet = content.to_raw_data()
